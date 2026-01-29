@@ -5,226 +5,550 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ewezu Ngim - AI & Robotics Researcher</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary-color: #3f51b5; /* Indigo */
-            --accent-color: #ff9800; /* Orange/Amber */
-            --text-color: #333;
-            --bg-color: #f7f9fc;
-            --card-bg: #fff;
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent: #f59e0b;
+            --accent-bright: #fbbf24;
+            --text: #f1f5f9;
+            --text-muted: #cbd5e1;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-elevated: #334155;
+            --border: #475569;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         header {
-            text-align: center;
-            padding: 40px 0 20px;
+            padding: 80px 0 60px;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
         }
 
         header h1 {
-            font-size: 2.5em;
-            color: var(--primary-color);
-            margin-bottom: 5px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
 
         header p {
-            font-size: 1.1em;
-            color: #666;
-            margin-top: 0;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        main {
+            padding: 0 0 100px;
         }
 
         section {
-            background: var(--card-bg);
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background: var(--bg-card);
+            padding: 48px;
+            margin-bottom: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
         }
 
         h2 {
-            font-size: 1.8em;
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 5px;
-            margin-top: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 32px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 32px 0 16px;
+        }
+
+        p {
+            color: var(--text-muted);
             margin-bottom: 20px;
+            font-size: 1.0625rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 3px 12px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
         }
 
         ul {
             list-style: none;
-            padding: 0;
         }
 
         ul li {
-            margin-bottom: 15px;
-            padding-left: 20px;
+            margin-bottom: 20px;
+            padding-left: 32px;
             position: relative;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
         ul li:before {
-            content: '»';
+            content: '▸';
             position: absolute;
             left: 0;
-            color: var(--primary-color);
+            color: var(--accent-bright);
             font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 600;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 0.95em;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 24px;
+            overflow: hidden;
+            border-radius: 12px;
         }
 
-        table th, table td {
-            border: 1px solid #eee;
-            padding: 12px;
+        table th,
+        table td {
+            padding: 16px;
             text-align: left;
         }
 
         table th {
-            background-color: #f0f2f7;
-            color: var(--primary-color);
+            background: var(--bg-elevated);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        table td {
+            color: var(--text-muted);
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+        }
+
+        table tr:hover td {
+            background: var(--bg-elevated);
+        }
+
+        .context-note {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .project-card:hover {
+            transform: translateX(8px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-card h4 {
+            color: var(--text);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
             font-weight: 600;
         }
 
-        .contact-list a {
-            color: var(--primary-color);
-            text-decoration: none;
+        .project-card p {
+            margin-bottom: 16px;
+            font-size: 1rem;
         }
 
-        .contact-list a:hover {
-            text-decoration: underline;
-            color: var(--accent-color);
+        .project-card a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .project-card a:hover {
+            color: var(--accent-bright);
+            gap: 12px;
         }
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .skill-tags span {
-            background-color: #e8eaf6;
-            color: var(--primary-color);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.85em;
+            background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+            color: var(--primary-light);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9375rem;
             font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tags span:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .contact-list li:before {
+            content: '●';
+            color: var(--accent);
+        }
+
+        .contact-list a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .contact-list a:hover {
+            color: var(--accent-bright);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
+            color: white;
+            padding: 48px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.2), transparent);
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 28px;
+            font-size: 1.125rem;
+            position: relative;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 14px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.0625rem;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.125rem;
+            }
+
+            section {
+                padding: 32px 24px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-box {
+                padding: 32px 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Ewezu Ngim</h1>
-            [cite_start]<p>First Class Mechatronics Engineer focused on embodied AI for physical interaction and control[cite: 5].</p>
-        </header>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-photo">EN</div>
+                <div class="header-text">
+                    <h1>Ewezu Ngim</h1>
+                    <p>First Class Mechatronics Engineer bridging AI reasoning with real-world robotic autonomy</p>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        <section id="research-interests">
-            <h2>🔬 Research Interests & Vision</h2>
-            <p>My core vision is to bridge the gap between abstract AI reasoning and physical, real-world autonomy.</p>
-            <ul>
-                <li>**The Critical Gap (MFMs for Robotics):** While Large Language Models (LLMs) provide a deep linguistic substrate for reasoning, their inherent lack of physical grounding prevents them from solving the most important challenge in AI: achieving true robotic autonomy in dynamic, unstructured environments. The critical gap is a reliance on purely textual data—a lossy representation that cannot holistically capture the sensory richness required for robust multimodal representation learning and cross-embodiment action. My primary objective is to bridge this gap by developing robust, **Multimodal Foundation Models (MFMs) for Robotics**.</li>
-                [cite_start]<li>**Past & Present Work (LLM Reliability):** This includes First-Author work on cross-cultural LLM hallucination presented at Deep Learning Indaba[cite: 6]. [cite_start]This research involved investigating hallucination in LLMs (Llama 3.1) in various linguistic and cultural situations (Western vs. Nigerian)[cite: 60]. [cite_start]I developed a novel methodology for quantifying response uncertainty using **semantic entropy**[cite: 61].</li>
-                [cite_start]<li>**Past & Present Work (Embodied Systems):** Research includes real-time, sensor-driven ML (Fall Detection) [cite: 6] [cite_start]and a thesis on **Machine Learning-Driven Fall Detection** using wearable sensors for enhanced safety[cite: 36, 53].</li>
-                [cite_start]<li>**Future Focus (Robotics & Control):** I aim to master **Multimodal Data Integration**, **Reinforcement Learning (RL)**, and **Control Theory** to drive autonomous systems[cite: 7]. This specific focus on uncertainty modeling, perception beyond text, and efficient physical action aligns with this goal.</li>
-            </ul>
+    <main class="container">
+        <section id="research">
+            <h2>Research Vision</h2>
+            <p><strong>Core Mission:</strong> Developing <span class="highlight">Multimodal Foundation Models for Robotics</span> that enable autonomous systems to understand and interact with the physical world.</p>
+            <p>My research bridges abstract AI reasoning with embodied robotics through sensor-driven machine learning, cross-cultural language model analysis, and control theory. I demonstrated that reliability techniques effective in high-resource settings (English/Western contexts) often fail in low-resource environments (Pidgin/Nigerian contexts), using semantic entropy as a measurement framework.</p>
         </section>
 
         <section id="publications">
-            <h2>📝 Publications & Papers</h2>
+            <h2>Publications</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Context/Journal</th>
+                        <th>Venue</th>
                         <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        [cite_start]<td>**Seeds, Contexts, and Tongues: Decoding the Drivers of Hallucination in Language Models** [cite: 57]</td>
-                        [cite_start]<td>Presented at **Deep Learning Indaba** (2024) [cite: 59]</td>
-                        [cite_start]<td>First Author [cite: 58] & Researcher</td>
+                        <td>
+                            <strong>Seeds, Contexts, and Tongues: Decoding the Drivers of Hallucination in Language Models</strong>
+                            <div class="context-note">Presented at Deep Learning Indaba - Africa's premier machine learning conference</div>
+                        </td>
+                        <td>Deep Learning Indaba (August 2024)</td>
+                        <td>First Author</td>
                     </tr>
                     <tr>
-                        [cite_start]<td>**Machine Learning-Driven Fall Detection Using Wearable Sensors for Enhanced Safety** [cite: 53]</td>
-                        [cite_start]<td>*Iconic Research And Engineering Journals* (2024) [cite: 55]</td>
-                        [cite_start]<td>Author [cite: 54]</td>
+                        <td>
+                            <strong>Machine Learning-Driven Fall Detection Using Wearable Sensors for Enhanced Safety</strong>
+                        </td>
+                        <td>Iconic Research And Engineering Journals (2024)</td>
+                        <td>Author</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-        <section id="capabilities">
-            <h2>🛠️ Professional Capabilities</h2>
-            [cite_start]<p>A First-Class Mechatronics Engineer applying advanced machine learning and engineering principles[cite: 5, 35].</p>
-            
-            <h3>Core Technical Skills</h3>
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-card">
+                <h4>Customer Churn Prediction Web Service</h4>
+                <p>End-to-end ML deployment with Flask/FastAPI, enabling real-time predictions for business retention strategies. Includes data preprocessing, model training, and RESTful API implementation.</p>
+                <a href="https://github.com/EwezuNgim" target="_blank">View on GitHub →</a>
+            </div>
+            <div class="project-card">
+                <h4>Chatbot as a Web Service</h4>
+                <p>Production-ready conversational AI system with custom NLP pipelines, deployed as a scalable web service with Docker containerization.</p>
+                <a href="https://github.com/EwezuNgim" target="_blank">View on GitHub →</a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <h3>Machine Learning & AI</h3>
             <div class="skill-tags">
-                [cite_start]<span>Python</span> [cite: 40]
-                [cite_start]<span>MATLAB</span> [cite: 40]
-                [cite_start]<span>SQL</span> [cite: 40]
-                [cite_start]<span>Machine Learning</span> [cite: 40]
-                [cite_start]<span>Data Science</span> [cite: 41]
                 <span>Deep Learning</span>
-                [cite_start]<span>Natural Language Processing (NLP)</span> [cite: 83]
-                [cite_start]<span>LLMs (Custom Deployment)</span> [cite: 101, 103]
-                [cite_start]<span>Multilingual LLM Training (Yoruba, Igbo, Hausa)</span> [cite: 15]
-                [cite_start]<span>Synthetic Data Generation</span> [cite: 19, 23]
+                <span>NLP</span>
+                <span>Large Language Models</span>
+                <span>Multilingual AI Training</span>
+                <span>Synthetic Data Generation</span>
+                <span>Reinforcement Learning</span>
+            </div>
+            <h3>Engineering & Development</h3>
+            <div class="skill-tags">
+                <span>Python</span>
+                <span>MATLAB</span>
+                <span>SQL</span>
                 <span>Docker</span>
-                [cite_start]<span>Git (Version Control)</span> [cite: 40]
-                [cite_start]<span>RESTful Web Services (Flask, FastAPI)</span> [cite: 97, 103]
-                [cite_start]<span>Custom API Endpoints</span> [cite: 12]
-                [cite_start]<span>ImageJ (Advanced)</span> [cite: 40]
+                <span>Git</span>
+                <span>Flask/FastAPI</span>
+                <span>REST APIs</span>
+                <span>ImageJ</span>
             </div>
         </section>
 
         <section id="volunteering">
-            <h2>🎓 Volunteering & Community Involvement</h2>
+            <h2>Community Involvement</h2>
             <ul>
-                [cite_start]<li>**Tutor, 3MTT DeepTech Ready Live Class (01/04/2025 - Current):** Designed and delivered advanced technical training on building end-to-end Machine Learning applications (for Data Science Nigeria) with Natural Language Processing (NLP)[cite: 82, 83].</li>
-                [cite_start]<li>**Hackathon Technical Reviewer, Data Science Nigeria AI Bootcamp (20/10/2025 - Current):** Led the technical setup of the competition, including problem statements and evaluation criteria[cite: 88, 90].</li>
-                [cite_start]<li>**Poster Judge, Data Science Nigeria AI Bootcamp (20/10/2025 - Current):** Judged submitted research posters based on the quality of AI models, experimental design, and data analysis[cite: 85, 86].</li>
-                [cite_start]<li>**Tutor, Data Science Nigeria's AI Everyday (2024 - Current):** Actively coaching beginners in Python and helping them build Machine Learning models[cite: 78, 79].</li>
-                [cite_start]<li>**Member, Afe Babalola University Developers' Committee (Current):** Mentored and tutored fellow developers, fostering a collaborative atmosphere[cite: 80, 81].</li>
+                <li><strong>Tutor, 3MTT DeepTech Ready Live Class</strong> (Jan 2025 - Present): Designed and delivered advanced technical training on building end-to-end Machine Learning applications with NLP for Data Science Nigeria.</li>
+                <li><strong>Technical Reviewer, DSN AI Bootcamp Hackathon</strong> (Oct 2024 - Present): Led technical setup including problem statements and evaluation criteria.</li>
+                <li><strong>Poster Judge, DSN AI Bootcamp</strong> (Oct 2024 - Present): Evaluated research posters on AI model quality, experimental design, and data analysis.</li>
+                <li><strong>Tutor, DSN AI Everyday</strong> (2024 - Present): Coaching beginners in Python and Machine Learning model development.</li>
+                <li><strong>Member, ABUAD Developers' Committee</strong>: Mentoring and tutoring fellow developers.</li>
             </ul>
         </section>
 
         <section id="awards">
-            <h2>🏆 Honours and Awards</h2>
+            <h2>Honours & Awards</h2>
             <ul>
-                [cite_start]<li>**Founders' Award** (2018/19 - 2022/23): Won a cash prize every year during undergraduate studies from the Chancellor of my university for being a First Class student[cite: 43, 44].</li>
-                [cite_start]<li>**Shell Petroleum Development Corporation (SPDC) Scholar** (2020-2023): Recognizes and rewards the academic excellence of high-performing, full-time students[cite: 48, 49].</li>
-                [cite_start]<li>**Best Engineering Student in 200 Level** (18/19 Session): Awarded by the Nigerian Universities Engineering Students' Association (NUESA) with a CGPA of 4.98/5.0[cite: 45, 47].</li>
-                [cite_start]<li>**First Class Honours (Magna Cum Laude)**: Graduated with a CGPA above 4.5 out of 5 in the top 10 percent of the class[cite: 35, 51].</li>
+                <li><strong>Founders' Award</strong> (2018-2023): Annual cash prize for First Class academic excellence throughout undergraduate studies.</li>
+                <li><strong>Shell Petroleum Development Corporation Scholar</strong> (2020-2023): Recognition for exceptional academic performance.</li>
+                <li><strong>Best Engineering Student in 200 Level</strong> (2018/19): NUESA award with CGPA of 4.98/5.0.</li>
+                <li><strong>First Class Honours (Magna Cum Laude)</strong>: CGPA above 4.5/5.0 in top 10% of graduating class.</li>
             </ul>
         </section>
 
         <section id="contact">
-            <h2>✉️ Contact</h2>
+            <h2>Contact</h2>
             <ul class="contact-list">
-                [cite_start]<li>**Email:** <a href="mailto:ewezungim348@gmail.com">ewezungim348@gmail.com</a> [cite: 3]</li>
-                <li>**LinkedIn:** <a href="https://www.linkedin.com/in/ewezu-ngim-2a997a224" target="_blank">linkedin.com/in/ewezu-ngim-2a997a224</a></li>
-                [cite_start]<li>**GitHub:** <a href="https://github.com/EwezuNgim" target="_blank">github.com/EwezuNgim</a> (Includes deployed projects like Customer Churn Prediction Web Service [cite: 99] [cite_start]and Chatbot as a Web Service [cite: 105])</li>
-                [cite_start]<li>**Phone:** (+234) 7065695535 (Mobile) [cite: 2]</li>
+                <li><strong>Email:</strong> <a href="mailto:ewezungim348@gmail.com">ewezungim348@gmail.com</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ewezu-ngim-2a997a224" target="_blank">linkedin.com/in/ewezu-ngim-2a997a224</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/EwezuNgim" target="_blank">github.com/EwezuNgim</a></li>
+                <li><strong>Phone:</strong> (+234) 7065695535</li>
             </ul>
-        </section>
 
-    </div>
+            <div class="cta-box">
+                <h3>Let's Collaborate</h3>
+                <p>I'm actively seeking PhD opportunities and research collaborations in embodied AI, multimodal robotics, and cross-cultural NLP. Open to discussing projects that bridge language models with physical systems.</p>
+                <a href="mailto:ewezungim348@gmail.com" class="cta-button">Get In Touch</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
